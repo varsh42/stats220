@@ -15,6 +15,6 @@ Here is a list of my favourite animated movies in order:
 3. Zootopia
 4. Shrek
 
-Here's a gif from Puss in Boots ![](https://media1.tenor.com/m/IZa-30Ub7lYAAAAd/puss-in-boots-the-last-wish.gif)
+Here's a gif from Puss in Boots ![](https://c.tenor.com/m/IZa-30Ub7lYAAAAd/puss-in-boots-the-last-wish.gif)
 
 A meme that captures how I currently feel about my university studies is ![](https://c.tenor.com/8druEACXtX8AAAAd/tenor.gif)
