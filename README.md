@@ -7,7 +7,7 @@ This is my repo for STATS 220.
 - I am undertaking a degree in **Engineering and Science**.
 - I am taking STATS 220 because I want to improve my R.
 - I am interested in learning about *web scraping*.
-- One of my hobbies is reading ![Wikipedia](https://www.wikipedia.org/)
+- One of my hobbies is reading [Wikipedia](https://www.wikipedia.org/)
 
 Here is a list of my favourite animated movies in order:
 1. Puss in Boots: The Last Wish
