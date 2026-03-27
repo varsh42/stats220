@@ -6,13 +6,13 @@ output: html_fragment
 ```{r setup, include=FALSE}
 # This chunk hides all code and messages from the final report
 knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
-suppressPackageStartupMessages(library(tidyverse))
+```
 
-# Loading the data from the published Google Sheet CSV
+```{r}
+library(tidyverse)
 file <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vSCRRgi6Q17MhD6IwXig45hpsqKX1SBVGF_zf_DgMDBoPceAOy1wA7RSUyT0DoYFy738ijvodND-ESu/pub?output=csv"
 logged_data <- read_csv(file)
   
-# Renaming columns and cleaning the text (removing parentheses)
 latest_data <- logged_data %>%
   rename(
     timestamp = 1,
@@ -27,13 +27,11 @@ latest_data <- logged_data %>%
     environment = str_remove(environment, " \\(.*\\)")
   )
 
-# Calculating simple summary values for our dynamic text
-total_obs <- nrow(latest_data)
+total_obs <- nrow(latest_data) 
 avg_items <- round(mean(latest_data$items, na.rm = TRUE), 2)
 ```
 
 ```{css}
-/* Simple styling for the report */
 body {
   font-family: sans-serif;
   color: #333;
