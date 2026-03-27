@@ -1,0 +1,80 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+# This chunk hides all code and messages from the final report
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+suppressPackageStartupMessages(library(tidyverse))
+
+# Loading the data from the published Google Sheet CSV
+file <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vSCRRgi6Q17MhD6IwXig45hpsqKX1SBVGF_zf_DgMDBoPceAOy1wA7RSUyT0DoYFy738ijvodND-ESu/pub?output=csv"
+logged_data <- read_csv(file)
+  
+# Renaming columns and cleaning the text (removing parentheses)
+latest_data <- logged_data %>%
+  rename(
+    timestamp = 1,
+    device = 2,
+    items = 3,
+    headphones = 4,
+    environment = 5
+  ) %>%
+  mutate(
+    device = str_remove(device, " \\(.*\\)"),
+    headphones = str_remove(headphones, " \\(.*\\)"),
+    environment = str_remove(environment, " \\(.*\\)")
+  )
+
+# Calculating simple summary values for our dynamic text
+total_obs <- nrow(latest_data)
+avg_items <- round(mean(latest_data$items, na.rm = TRUE), 2)
+```
+
+```{css}
+/* Simple styling for the report */
+body {
+  font-family: sans-serif;
+  color: #333;
+  line-height: 1.5;
+}
+
+h2 {
+  color: #2c3e50;
+  border-bottom: 1px solid #ccc;
+}
+```
+
+## Exploring Student Study Desk Habits
+
+This report analyzes how students at the University of Auckland set up their workspaces. I am looking at what devices they use and how many physical items (like books and pens) they keep on their desks.
+
+### Workspace Observations
+
+The bar charts below show the most popular devices used for studying and the different types of environments where I collected my data.
+
+```{r chart1}
+# Creating a bar chart for the devices used
+ggplot(latest_data, aes(x = device)) + 
+  geom_bar(fill = "steelblue") +
+  labs(title = "Count of Primary Study Devices", 
+       x = "Device Type", 
+       y = "Frequency")
+```
+
+```{r chart2}
+# Creating a bar chart for the study environments
+ggplot(latest_data, aes(x = environment)) + 
+  geom_bar(fill = "darkseagreen") +
+  labs(title = "Distribution of Study Environments", 
+       x = "Environment", 
+       y = "Count")
+```
+
+### Summary of Data
+
+I have collected a total of **`r total_obs`** observations from across the campus. On average, I found that students have **`r avg_items`** non-electronic items on their desks while they work.
+
+This information helps us understand how students organize their physical space depending on the technology they are using.
+
